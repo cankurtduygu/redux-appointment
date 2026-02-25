@@ -2,6 +2,7 @@ import React from 'react'
 import { FaTimesCircle } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { remove } from '../redux/actions/patientAction';
+import { changeStatus } from '../redux/actions/patientAction';
 
 const PatientList = ({filteredPatients}) => {
 
@@ -14,13 +15,10 @@ const PatientList = ({filteredPatients}) => {
         <div key={hasta.id}>
           <div
             className={hasta.isDone ? "trueStil" : "falseStyle"}
-            // onDoubleClick={() =>
-            //   setHastalar(
-            //     hastalar.map((a) =>
-            //       a.id === hasta.id ? { ...a, isDone: !a.isDone } : a,
-            //     ),
-            //   )
-            // }
+
+            onDoubleClick={() => dispatch(changeStatus(hasta.id))} //isComplete durumunu değiştirmek için çift tıklama olayını ekliyoruz
+
+
           >
             <div>
               <h2>{hasta.patientName}</h2>
@@ -31,8 +29,6 @@ const PatientList = ({filteredPatients}) => {
             <div>
               <FaTimesCircle
                 style={{ color: "red" }}
-                // onClick={() =>   setHastalar(hastalar.filter((a) => a.id !== hasta.id))
-                //  }
                 onClick={() => (dispatch(remove(hasta.id)))}
               />
             </div>

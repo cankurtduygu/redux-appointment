@@ -17,6 +17,12 @@ const patientReducer = ( state = initialState, { type, payload }) => {
         ...state,
         patients: state.patients.filter((patient)=> patient.id !== payload)
       }
+
+     case "CHANGES_STATUS":
+      return {
+        ...state,
+        patients: state.patients.map((patient) => patient.id === payload ? {...patient, isDone: !patient.isDone} : patient)
+      }
     default:
       return state;
   }
