@@ -1,13 +1,11 @@
 import React from 'react'
 import { FaTimesCircle } from "react-icons/fa";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { remove } from '../redux/actions/patientAction';
 
 const PatientList = ({filteredPatients}) => {
 
-    const { patients } = useSelector((state) => state.patientReducer);
-
-    const { selectedDoctorId } = useSelector((state) => state.doctorReducer);
-    // console.log(patients);
+    const dispatch = useDispatch();
 
 
   return (
@@ -33,9 +31,9 @@ const PatientList = ({filteredPatients}) => {
             <div>
               <FaTimesCircle
                 style={{ color: "red" }}
-                // onClick={() =>
-                //   setHastalar(hastalar.filter((a) => a.id !== hasta.id))
-                // }
+                // onClick={() =>   setHastalar(hastalar.filter((a) => a.id !== hasta.id))
+                //  }
+                onClick={() => (dispatch(remove(hasta.id)))}
               />
             </div>
           </div>

@@ -12,6 +12,11 @@ const patientReducer = ( state = initialState, { type, payload }) => {
         ...state,
         patients: [...state.patients, payload]
       };
+    case "REMOVE_PATIENT":
+      return {
+        ...state,
+        patients: state.patients.filter((patient)=> patient.id !== payload)
+      }
     default:
       return state;
   }
